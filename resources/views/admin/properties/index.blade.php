@@ -2,7 +2,11 @@
 
 @section('content')
 
-    <h1>Les biens</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Les biens</h1>
+        <a href="{{ route('admin.property.create') }}" class="btn btn-primary">Ajouter un bien</a>
+    </div>
+    
 
     <table class="table table-striped">
         <thead>
@@ -15,7 +19,7 @@
             </tr>
         </thead>
         <body>
-            @foreach($property as $property)
+            @foreach($properties as $property)
                 <tr>
                     <td>{{ $property->title }}</td>
                     <td>{{ $property->surface }}m²</td>
