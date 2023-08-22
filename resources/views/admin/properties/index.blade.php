@@ -18,7 +18,7 @@
                 <th class="text-end">Actions</th>
             </tr>
         </thead>
-        <body>
+        <tbody>
             @foreach($properties as $property)
                 <tr>
                     <td>{{ $property->title }}</td>
@@ -27,6 +27,7 @@
                     <td>{{ $property->city }}</td>
                 </tr>
             @endforeach
-        </body>
+        </tbody>
+    </table>
 
 @endsection
