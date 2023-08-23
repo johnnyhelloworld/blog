@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PropertyFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Option;
 
 class PropertyController extends Controller
 {
@@ -34,8 +35,10 @@ class PropertyController extends Controller
             'postal_code' => 75000,
             'sold' => false,
         ]);
+
         return view('admin.properties.form', [
-            'property' => $property
+            'property' => $property,
+            'option' => [Option::pluck('name', 'id')]
         ]);
     }
 
@@ -55,7 +58,8 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
         return view('admin.properties.form', [
-            'property' => $property
+            'property' => $property,
+            'option' => [Option::pluck('name', 'id')]
         ]);
     }
 
