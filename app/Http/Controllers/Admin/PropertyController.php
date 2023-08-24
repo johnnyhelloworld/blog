@@ -38,7 +38,7 @@ class PropertyController extends Controller
 
         return view('admin.properties.form', [
             'property' => $property,
-            'option' => [Option::pluck('name', 'id')]
+            'options' => [Option::pluck('name', 'id')]
         ]);
     }
 
@@ -59,7 +59,7 @@ class PropertyController extends Controller
     {
         return view('admin.properties.form', [
             'property' => $property,
-            'option' => [Option::pluck('name', 'id')]
+            'options' => [Option::pluck('name', 'id')]
         ]);
     }
 
