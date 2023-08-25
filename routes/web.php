@@ -24,6 +24,10 @@ Route::get('/biens/{slug}-{property}', [\App\Http\Controllers\PropertyController
     'slug' => $slugRegex
 ]);
 
+Route::post('/biens/{property}/contact', [\App\Http\Controllers\PropertyController::class, 'contact'])->name('property.contact')->where([
+    'property' => $idRegex,
+]);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
