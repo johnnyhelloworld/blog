@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,10 +33,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login'])
+    ->middleware('guest')
+    ->name('login');
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'doLogin']);
+Route::delete('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
+
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::resource('property', \App\Http\Controllers\Admin\PropertyController::class)->except(['show']);
     Route::resource('option', \App\Http\Controllers\Admin\OptionController::class)->except(['show']);
-
 });
 
 Route::middleware('auth')->group(function () {
