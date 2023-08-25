@@ -26,7 +26,6 @@ class SearchPropertiesRequest extends FormRequest
             'surface' => ['numeric','gte:0','nullable'],
             'rooms' => ['numeric','gte:0','nullable'],
             'title' => ['string','nullable']
-
         ];
     }
 }
