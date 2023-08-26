@@ -53,6 +53,7 @@ Route::delete('/logout', [\App\Http\Controllers\AuthController::class, 'logout']
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::resource('property', \App\Http\Controllers\Admin\PropertyController::class)->except(['show']);
     Route::resource('option', \App\Http\Controllers\Admin\OptionController::class)->except(['show']);
+    Route::resource('user', \App\Http\Controllers\Admin\UserController::class)->except(['show']);
 });
 
 Route::middleware('auth')->group(function () {
