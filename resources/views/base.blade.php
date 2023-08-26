@@ -25,7 +25,37 @@
                         {{-- rend élement actif si $route contient property --}}
                         <a href="{{ route('property.index') }}" @class(['nav-link', 'active' => str_contains($route, 'property.')])>Biens</a> 
                     </li>
+                    @if(auth()->check())
+                    <li class="nav-item">
+                        {{-- rend élement actif si $route contient property --}}
+                        <a href="{{ route('admin.property.index') }}" @class(['nav-link', 'active' => str_contains($route, 'property.')])>Backoffice</a> 
+                    </li>
+                    @endif
                 </ul>
+                <div class="ms-auto">
+                    @if(auth()->check())
+                    @auth
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    @method('post')
+                                    <button class="nav-link">Se déconnecter</button>
+                                </form>
+                            </li>
+                        </ul>
+                    @endauth
+                    @else
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}" class="nav-link">Login</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('register') }}" class="nav-link">Register</a> 
+                        </li>
+                    </ul>
+                    @endif
+                </div>
             </div>
         </div>
     </nav>
