@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
@@ -32,5 +34,21 @@ class AuthController extends Controller
     {
         Auth::logout();
         return to_route('login')->with('success', 'Vous êtes maintenant déconnecté');
+    }
+
+    public function register(){
+        return view('auth.register');
+    }
+
+    public function doRegister(RegisterRequest $request)
+    {
+        $credentials = $request->validated();
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+        
+        return redirect()->route('login')->with('success', 'Votre compte a été créé avec succès. Connectez-vous maintenant.');
     }
 }
