@@ -66,14 +66,13 @@ class UserController extends Controller
     public function update(UserFormRequest $request, User $user)
     {
         $user->update($request->validated());
-        $user->options()->sync($request->validated('options'));
         return to_route('admin.user.index')->with('success', 'L\'utilisateur a bien été modifié');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(User $user) 
     {
         $user->delete();
         return to_route('admin.user.index')->with('success', 'L\'utilisateur a bien été supprimé');

@@ -1,6 +1,6 @@
 @extends('admin.admin')
 
-@section('title', $user->exists ? "Editer un bien" : "Créer un bien")
+@section('title', $user->exists ? "Editer un utilisateur" : "Créer un utilisateur")
 
 @section('content')
 
@@ -13,7 +13,6 @@
 
         @include('shared.input', ['class' => 'col', 'name' => 'name', 'label' => 'Nom', 'value' => $user->name])
         @include('shared.input', ['class' => 'col', 'name' => 'email', 'label' => 'Email', 'value' => $user->email])
-        @include('shared.input', ['class' => 'col', 'name' => 'password', 'label' => 'Mot de passe'])
 
         <div>
             <button class="btn btn-primary">
